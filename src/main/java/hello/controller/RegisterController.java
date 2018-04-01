@@ -32,27 +32,31 @@ public class RegisterController {
 	}
 
 	@RequestMapping(value = { "/{locale:en|vi}/register", "/register" }, method = RequestMethod.POST)
-	public String doRegister(@ModelAttribute("myUser") @Valid MyUser myUser, BindingResult result, 
+	public String doRegister(@ModelAttribute("myUser") @Valid MyUser myUser, BindingResult result,
 			HttpServletRequest request) {
 		if (result.hasErrors()) {
-//			List<ObjectError> errorList = result.getAllErrors();
-//			for(ObjectError err : errorList) {
-//				System.out.println("\tgetDefaultMessage = " + err.getDefaultMessage());
-//				System.out.println("\tgetCode = " + err.getCode());
-//				System.out.println("\tgetObjectName = " + err.getObjectName());
-//				System.out.println();
-//			}
-			
-			return "register";
-			//chú ý: return TÊN FILE VIEW NHÉ, CHỨ KHÔNG PHẢI ĐƯỜNG DẪN (/en/register)
-			//MẤT CẢ BUỔI CHIỀU ĐỀ TÌM RA LỖI NÀY!
-		}
+			// List<ObjectError> errorList = result.getAllErrors();
+			// for(ObjectError err : errorList) {
+			// System.out.println("\tgetDefaultMessage = " + err.getDefaultMessage());
+			// System.out.println("\tgetCode = " + err.getCode());
+			// System.out.println("\tgetObjectName = " + err.getObjectName());
+			// System.out.println();
+			// }
 
-		 if(myUserDao.saveMyUser(myUser)) return "registerSuccessful";
-		 else {
-			 request.setAttribute("DUPLICATE_USER_OR_EMAIL", 1);
-			 return "register";
-		 }
+			return "register";
+			// chú ý: return TÊN FILE VIEW NHÉ, CHỨ KHÔNG PHẢI ĐƯỜNG DẪN (/en/register)
+			// MẤT CẢ BUỔI CHIỀU ĐỀ TÌM RA LỖI NÀY!
+		}
+		
+		if(!myUser.getPassword().equals(myUser.getConfirmPassword())) {
+			request.setAttribute("PASSWORD_DOESNT_MATCH", 1);
+			return "register";
+		} else if (myUserDao.saveMyUser(myUser)) {
+			return "registerSuccessful";
+		} else {
+			request.setAttribute("DUPLICATE_USER_OR_EMAIL", 1);
+			return "register";
+		}
 	}
 
 }

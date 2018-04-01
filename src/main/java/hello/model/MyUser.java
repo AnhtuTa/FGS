@@ -28,11 +28,13 @@ public class MyUser {
 	//[ConstraintName].[ClassName].[FieldName]=[your message]
 	@MyPassword
 	String password;	// trong database thì là field: encrypted_password
-
+	
+	String confirmPassword;
 	int enabled;
 	
 	public MyUser() {}
 
+	//constructor này cho thằng mapper ở dưới, nên nó chỉ cần những field mà trong database có
 	public MyUser(Long id, String username, String email, String fullname, String password, int enabled) {
 		super();
 		this.id = id;
@@ -82,6 +84,14 @@ public class MyUser {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 
 	public int getEnabled() {

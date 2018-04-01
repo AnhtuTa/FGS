@@ -43,6 +43,13 @@
 					<form:errors path="password" cssClass="form_error" /></td>
 			</tr>
 			<tr>
+				<td><spring:message code="label.confirm_password" /></td>
+				<td><form:password path="confirmPassword" />
+					<c:if test="${requestScope.PASSWORD_DOESNT_MATCH != null}">
+						<span class="my_error"><spring:message code="msg.password_doesnt_match" /></span>
+					</c:if></td>
+			</tr>
+			<tr>
 				<td><spring:message code="label.fullname" /></td>
 				<td><form:input path="fullname" />
 					<form:errors path="fullname" cssClass="form_error" /></td>
