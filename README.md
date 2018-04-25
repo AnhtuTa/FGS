@@ -1,1 +1,2 @@
-﻿# Đồ án tốt nghiệp kỳ 20172, tạo ngày 1/4/2018
+﻿## Graduation project (term 20172)
+### Created data: April 1st, 2018

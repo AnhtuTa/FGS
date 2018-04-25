@@ -7,6 +7,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -37,8 +38,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	@Bean(name = "messageSource")
 	public MessageSource getMessageResource() {
-		ReloadableResourceBundleMessageSource messageResource = 
-				new ReloadableResourceBundleMessageSource();
+		ReloadableResourceBundleMessageSource messageResource = new ReloadableResourceBundleMessageSource();
 
 		// Đọc vào file i18n/messages_xxx.properties
 		// Ví dụ: i18n/message_en.properties
@@ -59,10 +59,18 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		UrlLocaleInterceptor localeInterceptor = new UrlLocaleInterceptor();
-		registry.addInterceptor(localeInterceptor)
-				.addPathPatterns("/en/*", "/fr/*", "/vi/*");
-		
-		//interceptor này được áp dụng cho mọi request đang tiến đến một Controller
+		registry.addInterceptor(localeInterceptor).addPathPatterns("/en/*", "/fr/*", "/vi/*");
+
+		// interceptor này được áp dụng cho mọi request đang tiến đến một Controller
 		registry.addInterceptor(new SetUriInterceptor());
 	}
+
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
+		registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
+		registry.addResourceHandler("/img/**").addResourceLocations("/static/img/");
+		
+	}
+
 }

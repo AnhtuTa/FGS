@@ -28,6 +28,6 @@
 			vieURI = "/vi" + currentURI;
 		}
 	%>
-	<a href="<%=engURI%>">English</a> | &nbsp;
-	<a href="<%=vieURI%>">Tiếng Việt</a> | &nbsp;
+	<a href="<%=engURI%>"><img class="icon_language" src="/img/en_flag30.png"></a> | &nbsp;
+	<a href="<%=vieURI%>"><img class="icon_language" src="/img/vn_flag30.png"></a> | &nbsp;
 </div>

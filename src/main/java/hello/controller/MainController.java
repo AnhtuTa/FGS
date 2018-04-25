@@ -4,23 +4,36 @@ import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import hello.dao.HotelDAO;
+import hello.model.Hotel;
 import hello.service.MyUserDetailsService;
 
 @Controller
 public class MainController {
 
+	@Autowired
+	HotelDAO hotelDAO;
+	
 	@RequestMapping(value= {"/{locale:en|vi}/", "/", "/{locale:en|vi}/home", "/home"})
 	public String home(Model model, HttpServletRequest request) {
-		model.addAttribute("message", "Today I overslept! My mom said: \"Try and get an early night so I don't oversleep tomorrow\"");
+		//model.addAttribute("message", "Today I overslept! My mom said: \"Try and get an early night so I don't oversleep tomorrow\"");
 		
 		if(request.getSession().getAttribute("USER_MUST_LOGOUT_FIRST") != null) {
 			model.addAttribute("USER_MUST_LOGOUT_FIRST", 1);
 			request.getSession().removeAttribute("USER_MUST_LOGOUT_FIRST");
+		}
+		
+		if(request.getParameter("hotel_name") != null) {
+			model.addAttribute("hotelList", hotelDAO.getAllHotels());
+			for(Hotel h : hotelDAO.getAllHotels()) {
+				System.out.println(h);
+			}
 		}
 		
 		return "index";
