@@ -25,7 +25,8 @@ public class SetUriInterceptor extends HandlerInterceptorAdapter {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		HttpSession session = request.getSession();
-		String currentURIAndQuery = request.getRequestURI() + "?" + request.getQueryString();
+		String currentURIAndQuery = request.getRequestURI();
+		if(request.getQueryString() != null) currentURIAndQuery = currentURIAndQuery + "?" + request.getQueryString();
 		session.setAttribute("currentURI", currentURIAndQuery);
 
 		// chú ý: dù người dùng login nhưng thuộc tính sau của session vẫn

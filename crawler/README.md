@@ -1,1 +1,0 @@
-﻿# Khi chạy trên host thật thì bỏ qua thư mục này!

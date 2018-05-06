@@ -74,6 +74,15 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
+
+		<!-- spring-boot-starter-web đã tích hợp sẵn thư viện jackson-databind, 
+		thư viện này giúp chuyển đổi JSON thành đối tượng Java và ngược lại. --> 
+
+		<!-- thư viện để chuyển đổi XML và Java (do ko cần nên comment lại) -->
+		<!-- <dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+		</dependency> -->
 	</dependencies>
 
 	<build>

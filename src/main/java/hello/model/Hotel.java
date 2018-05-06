@@ -1,21 +1,29 @@
 package hello.model;
 
-public class Hotel {
+import java.io.Serializable;
+
+public class Hotel implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2657453330660920424L;
+	
 	long id;
 	String name;
 	int star;
 	String hotelUrl; // địa chỉ trang web
 	String imageUrl; // địa chỉ ảnh của hotel
 
+	String street;	//số nhà + tên phố/đường
 	String district; // quận
 	String city;
-	float latitude; // vĩ độ
-	float longitude; // kinh độ
+	String latitude; // vĩ độ
+	String longitude; // kinh độ
 
 	float reviewPoint; // điểm đánh giá
 	int numReviews; // số lượng người đã đánh giá
-	float area; // diện tích
-	float price; // giá
+	float area; // diện tích (Chắc ko cần)
+	String priceString; // giá đã đc format, đơn vị: VNĐ (VD: 1.982.000)
 
 	public long getId() {
 		return id;
@@ -57,6 +65,15 @@ public class Hotel {
 		this.imageUrl = imageUrl;
 	}
 
+	
+	public String getStreet() {
+		return street;
+	}
+
+	public void setStreet(String street) {
+		this.street = street;
+	}
+
 	public String getDistrict() {
 		return district;
 	}
@@ -73,19 +90,19 @@ public class Hotel {
 		this.city = city;
 	}
 
-	public float getLatitude() {
+	public String getLatitude() {
 		return latitude;
 	}
 
-	public void setLatitude(float latitude) {
+	public void setLatitude(String latitude) {
 		this.latitude = latitude;
 	}
 
-	public float getLongitude() {
+	public String getLongitude() {
 		return longitude;
 	}
 
-	public void setLongitude(float longitude) {
+	public void setLongitude(String longitude) {
 		this.longitude = longitude;
 	}
 
@@ -113,12 +130,16 @@ public class Hotel {
 		this.area = area;
 	}
 
-	public float getPrice() {
-		return price;
+	public String getPriceString() {
+		return priceString;
 	}
 
-	public void setPrice(float price) {
-		this.price = price;
+	public void setPriceString(String priceString) {
+		this.priceString = priceString;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override

@@ -1,0 +1,78 @@
+.checked {
+	color: orange;
+}
+
+.hotel_wrapper {
+	display: inline-block;
+	border-radius: 3px;
+	font-family: Arial;
+	box-shadow: -3px 2px 3px #9a9a9a;
+	border-radius: 3px;
+	width: 200px;
+}
+
+.hotel_photo_wrapper {
+	text-align: center;
+    height: 130px;
+    overflow: hidden;
+}
+.hotel_photo{
+	width: 200px;
+}
+
+.hotel_name {
+	font-size: 15px;
+	font-weight: bold;
+	margin: 10px 0;
+}
+
+.hotel_star {
+	float: left;
+}
+
+.hotel_review {
+	float: right;
+	text-align: center;
+}
+
+.hotel_price {
+	color: red;
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 17px;
+}
+
+.hotel_point {
+	background: #09b511;
+	color: #fff;
+	padding: 7px;
+	display: inline-block;
+	border-radius: 50%;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.total_rate {
+	text-align: center;
+	font-size: 13px;
+}
+
+.btn_option {
+	background: #09b511;
+	color: #fff;
+	padding: 9px;
+	border-radius: 5px;
+	margin-top: 7px;
+	cursor: pointer;
+	width: 40%;
+	text-align: center;
+	font-size: 14px;
+}
+
+.hotel_route {
+	float: left;
+}
+
+.hotel_reservation {
+	float: right;
+}

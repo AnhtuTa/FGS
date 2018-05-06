@@ -59,10 +59,10 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		UrlLocaleInterceptor localeInterceptor = new UrlLocaleInterceptor();
-		registry.addInterceptor(localeInterceptor).addPathPatterns("/en/*", "/fr/*", "/vi/*");
+		registry.addInterceptor(localeInterceptor).addPathPatterns("/en/**", "/vi/**");
 
-		// interceptor này được áp dụng cho mọi request đang tiến đến một Controller
-		registry.addInterceptor(new SetUriInterceptor());
+		// interceptor này được áp dụng cho mọi request đang tiến đến một Controller, trừ URL webservice
+		registry.addInterceptor(new SetUriInterceptor()).excludePathPatterns("/rest/**");
 	}
 
 	@Override

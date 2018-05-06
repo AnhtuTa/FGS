@@ -3,18 +3,18 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page isELIgnored="false" %>
 <c:set var="ls" value="${sessionScope.localeString}" />
-<div style="border: 1px solid #ccc; padding: 5px; margin-bottom: 20px;">
-	<a href="${pageContext.request.contextPath}/${ls}/home">Home</a> | &nbsp;
-	<a href="${pageContext.request.contextPath}/${ls}/user_info">User Info</a> | &nbsp; 
-	<a href="${pageContext.request.contextPath}/${ls}/admin">Admin</a> | &nbsp;
+<div style="border: 1px solid #ccc; padding: 5px; margin-bottom: 20px; text-align: center;">
+	<a href="${pageContext.request.contextPath}/${ls}/home">Home</a> &nbsp;|&nbsp;
+	<a href="${pageContext.request.contextPath}/${ls}/user_info">User Info</a> &nbsp;|&nbsp; 
+	<a href="${pageContext.request.contextPath}/${ls}/admin">Admin</a> &nbsp;|&nbsp;
 
 	<c:if test="${pageContext.request.userPrincipal.name == null}">
-		<a href="${pageContext.request.contextPath}/${ls}/login">Login</a> | &nbsp;
-    	<a href="${pageContext.request.contextPath}/${ls}/register">Register</a> | &nbsp;
+		<a href="${pageContext.request.contextPath}/${ls}/login">Login</a> &nbsp;|&nbsp;
+    	<a href="${pageContext.request.contextPath}/${ls}/register">Register</a> &nbsp;|&nbsp;
 	</c:if>
 	
 	<c:if test="${pageContext.request.userPrincipal.name != null}">
-    	<a href="${pageContext.request.contextPath}/logout">Logout</a> | &nbsp;
+    	<a href="${pageContext.request.contextPath}/logout">Logout</a> &nbsp;|&nbsp;
 	</c:if>
 
 	<%
@@ -28,6 +28,6 @@
 			vieURI = "/vi" + currentURI;
 		}
 	%>
-	<a href="<%=engURI%>"><img class="icon_language" src="/img/en_flag30.png"></a> | &nbsp;
-	<a href="<%=vieURI%>"><img class="icon_language" src="/img/vn_flag30.png"></a> | &nbsp;
+	<a href="<%=engURI%>" style="vertical-align: middle;"><img class="icon_language" src="/img/en_flag30.png"></a> &nbsp;|&nbsp;
+	<a href="<%=vieURI%>" style="vertical-align: middle;"><img class="icon_language" src="/img/vn_flag30.png"></a> &nbsp;|&nbsp;
 </div>

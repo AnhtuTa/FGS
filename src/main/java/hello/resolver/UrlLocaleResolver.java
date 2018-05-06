@@ -42,8 +42,8 @@ public class UrlLocaleResolver implements LocaleResolver {
 		} else {
 			locale = (Locale) session.getAttribute(URL_LOCALE_ATTRIBUTE_NAME);
 			if(locale == null) {
-				locale = Locale.ENGLISH;
-				session.setAttribute(LOCALE_STRING, "en");
+				locale = new Locale("vi", "VN");
+				session.setAttribute(LOCALE_STRING, "vi");
 			}
 		}
 		
