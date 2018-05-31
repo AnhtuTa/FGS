@@ -34,7 +34,7 @@ public class MapController {
 			List<Hotel> hotelIdPriceList = hotelDAO.getHotelIdPricesGeo();
 			System.out.println("[MapController]");
 			for(Hotel ht : hotelIdPriceList) {
-				System.out.println(ht.getId() + " - " + ht.getPriceString() + " - " + ht.getLatitude());
+				System.out.println(ht.getId() + " - " + ht.getPrice() + " - " + ht.getLatitude());
 			}
 			model.addAttribute("hotelIdPriceList", hotelIdPriceList);
 		} else {

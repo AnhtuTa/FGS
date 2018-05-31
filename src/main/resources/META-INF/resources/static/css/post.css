@@ -1,0 +1,143 @@
+.select_city_wrapper {
+	float: left;
+	width: 50%;
+	box-sizing: border-box;
+	padding-right: 3px;
+}
+
+.select_district_wrapper {
+	float: right;
+	width: 50%;
+	padding-left: 3px;
+	box-sizing: border-box;
+}
+
+.div_select_city, .div_select_district, .div_street, .div_select_photos,
+	.div_price, .div_area, .div_writer_name, .div_post_title,
+	.div_post_content, .contact_me {
+	margin: 5px 0;
+}
+
+.select_city, .select_district {
+	width: 100%;
+	padding: 7px;
+	border-radius: 4px;
+	margin-bottom: 10px;
+}
+
+.span_required {
+	color: red;
+	cursor: pointer;
+}
+
+.option_city {
+	
+}
+
+.input_street, .input_price, .input_area, .input_post_title,
+	.input_writer_name, .contact_phone, .contact_email, .contact_address {
+	border: 1px solid #ababab;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 7px;
+	border-radius: 4px;
+	margin-bottom: 10px;
+}
+
+.text_area_content {
+	width: 100%;
+	height: 100px;
+	border-radius: 4px;
+	padding: 7px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+	display: block;
+}
+
+.input_photos {
+	margin-bottom: 15px;
+}
+
+.btn_upload_file {
+	background-color: transparent;
+	border: 1px solid #9c9c9c;
+	border-radius: 4px;
+	color: #c1c1c1;
+	position: relative;
+	margin-bottom: 10px;
+	height: 110px;
+	width: 110px;
+	padding: 4px;
+	cursor: pointer;
+}
+
+.btn_upload_file:hover {
+	background-color: #dbdbdb;
+}
+
+.span_camera {
+	font-size: 50px;
+}
+
+.hr_1 {
+	margin: 20px 0;
+	background: #2196F3;
+	height: 0px;
+	border: 1px solid #2196F3;
+}
+
+.preview_image_wrapper {
+	width: 100px;
+	height: 100px;
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	background-size: contain;
+	background-position: 50%;
+	background-repeat: no-repeat;
+	padding: 4px;
+	margin-bottom: 20px;
+	margin-right: 5px;
+	/* line-height: 1.42857; */
+	border: 1px solid #9c9c9c;
+	border-radius: 4px;
+	transition: border .2s ease-in-out;
+}
+
+.btn-close {
+	z-index: 10;
+	color: #fff;
+	background-color: #ff0000;
+	border-color: #fff;
+	position: absolute;
+	right: -10px;
+	top: -10px;
+	border-radius: 50%;
+	border: none;
+	display: inline-block;
+	margin-bottom: 0;
+	cursor: pointer;
+	background-image: none;
+	border: 1px solid transparent;
+	white-space: nowrap;
+	padding: 3px 4px;
+	font-size: 14px;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+#images_wrapper {
+	display: inline;
+}
+
+#select_file_wrapper {
+	height: 0;
+}
+
+.i_plus {
+	position: absolute;
+	top: 0px;
+	right: 8px;
+	font-size: 18px;
+	font-style: normal;
+}

@@ -3,6 +3,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page isELIgnored="false" %>
 <c:set var="ls" value="${sessionScope.localeString}" />
+
+<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+	
 <div style="border: 1px solid #ccc; padding: 5px; margin-bottom: 20px; text-align: center;">
 	<a href="${pageContext.request.contextPath}/${ls}/home">Home</a> &nbsp;|&nbsp;
 	<a href="${pageContext.request.contextPath}/${ls}/user_info">User Info</a> &nbsp;|&nbsp; 
@@ -12,11 +15,13 @@
 		<a href="${pageContext.request.contextPath}/${ls}/login">Login</a> &nbsp;|&nbsp;
     	<a href="${pageContext.request.contextPath}/${ls}/register">Register</a> &nbsp;|&nbsp;
 	</c:if>
-	
+
 	<c:if test="${pageContext.request.userPrincipal.name != null}">
     	<a href="${pageContext.request.contextPath}/logout">Logout</a> &nbsp;|&nbsp;
 	</c:if>
 
+	<a href="${pageContext.request.contextPath}/${ls}/post" title="Đăng tin thuê nhà">Đăng tin</a> &nbsp;|&nbsp;
+	<a href="${pageContext.request.contextPath}/${ls}/forum" title="Cộng đồng đăng tin thuê nhà">Forum</a> &nbsp;|&nbsp;
 	<%
 		String currentURI = (String) request.getSession().getAttribute("currentURI");
 		String engURI, vieURI;

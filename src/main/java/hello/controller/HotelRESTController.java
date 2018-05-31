@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import hello.dao.HotelDAO;
 import hello.model.Hotel;
 
+/**
+ * Hiện tại dùng GraphQL làm webservice, do đó ko dùng RESTful nữa
+ * @author Anhtu
+ */
 @RestController
 public class HotelRESTController {
 

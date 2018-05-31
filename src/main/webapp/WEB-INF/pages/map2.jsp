@@ -14,39 +14,44 @@
 	<title>map</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel='stylesheet' href="/css/style.css">
-	<link rel="stylesheet" href="/css/hotel_popup.css" />
+	<link rel="stylesheet" href="/css/info_window.css" />
+	<link rel="stylesheet" href="/css/popup.css" />
 </head>
 
 <body>
     <jsp:include page="_menu.jsp" />
 	<div class="map_wrapper">	<!-- Chú ý: thằng này overflow: hidden -->
 		<div id="map"></div>
-		<%-- <jsp:useBean id="fp" class="hello.util.FormatPrice"/> --%>  
+		<jsp:useBean id="fp" class="hello.util.FormatPrice"/>  
 		<c:forEach items="${hotelIdPriceList}" var="htIdPrice">
-			<div id="hotel${htIdPrice.id}" class="hotel-popup" onclick="clickToPopup(${htIdPrice.id})" title="<spring:message code="label.map.click_for_more_details" />">
-				${htIdPrice.priceString}đ
-			</div>
+			<c:if test="${htIdPrice.latitude != null}">
+				<div id="hotel${htIdPrice.id}" class="hotel-popup" onclick="clickToPopup(${htIdPrice.id})" title="<spring:message code="label.map.click_for_more_details" />">
+					${fp.formatPrice(htIdPrice.price)}đ
+				</div>
+			</c:if>
 		</c:forEach>
 	</div>
 	
 <script type="text/javascript" src="/js/jquery.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKzKoLguTtClfCpuh4jjFLmvig9jtPqoY"></script>
+<script type="text/javascript" src="/js/map.js"></script>
+<script type="text/javascript" src="/js/fgs.js"></script>
 <script type="text/javascript">
-var map;<c:forEach items="${hotelIdPriceList}" var="htIdPrice">
-var popup${htIdPrice.id};</c:forEach>
+var map;<c:forEach items="${hotelIdPriceList}" var="htIdPrice"><c:if test="${htIdPrice.latitude != null}">
+var popup${htIdPrice.id};</c:if></c:forEach>
 
 var Popup;
 var infoWindowContent;
 var infoWindow;
-var isMouseOnInfoWindow;
-var currZoom = 12;
 
-function setInfoWindowContent(hotelName, hotelStar, hotelPrice, reviewPoint, numReviews, imgUrl = "https://thedaoofdragonball.com/wp-content/uploads/2012/01/gokuism_church_of_goku.jpg", hotelAddress="Địa chỉ đang bị rỗng!") {
-    infoWindowContent =
+function setInfoWindowContent(hotelName, hotelStar, hotelPrice, reviewPoint, numReviews, avatar, hotelAddress) {
+    if(avatar == null) avatar = "https://thedaoofdragonball.com/wp-content/uploads/2012/01/gokuism_church_of_goku.jpg";
+    if(hotelAddress == null) hotelAddress = "Địa chỉ đang bị rỗng!"
+	infoWindowContent =
         '<div class="hotel_wrapper">' +
         '<div class="hotel_name">' + hotelName + '</div>' +
         '<div class="hotel_photo_wrapper">' +
-        '<img class="hotel_photo" max-height: 200px;" src="' + imgUrl + '">' +
+        '<img class="hotel_photo" src="' + avatar + '">' +
         '</div>' +
         '<div class="hotel_star">';
 
@@ -72,56 +77,22 @@ function initMap() {
     definePopupClass();
 
     map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: 21.006419, lng: 105.844087 },
-        zoom: 12,
+        center: { lat: 21.035419, lng: 105.844087 },
+        zoom: 14,
     });
     map.addListener("click", function () {
         if (infoWindow != null) infoWindow.close();
     });
-    map.addListener("zoom_changed", function () {
-        var arr = document.getElementsByClassName("gm-style-iw");
-        if(arr.length == 0) return;     //infoWindow chưa hiện lên
-
-        var infoWindowWrapper = arr[0].parentElement;
-        var zoom = map.getZoom();
-
-        console.log(infoWindowWrapper);
-        console.log(zoom);
-        console.log("offsetLeft = " + infoWindowWrapper.offsetLeft);
-        console.log("offsetTop = " + infoWindowWrapper.offsetTop);
-        
-        //di chuyển infoWindow dựa theo zoom (Nếu chỉ thay đổi thuộc tính left và top thì ko được,
-        //bởi vì sau khi scroll map thì 2 thuộc tính trên vẫn như cũ)
-        //Ta phải thay đổi vị trí tọa độ của infoWindow
-        var pos = infoWindow.getPosition();
-        console.log(pos);
-        console.log(pos.lat());
-        console.log(pos.lng());
-        
-        //infoWindow.setPosition(new google.maps.LatLng(-33.9, 154.1));
-
-        if(zoom < currZoom) {
-            //người dùng vừa thu nhỏ map
-            //dịch infoWindow sang phải và xuống dưới
-            //infoWindow.setPosition(new google.maps.LatLng(pos.lat() - 0.05, pos.lng() - 1));
-            //infoWindow.pixelOffset = new google.maps.Size(200,0);
-        } else {
-            //người dùng vừa phóng to map
-            //dịch infoWindow sang trái và lên trên
-            //infoWindow.setPosition(new google.maps.LatLng(pos.lat() + 0.05, pos.lng() + 1));
-        }
-
-        currZoom = zoom;
-    });
-    
 
     //========= popup ============//
     <c:forEach items="${hotelIdPriceList}" var="htIdPrice">
-		popup${htIdPrice.id} = new Popup(
-	        new google.maps.LatLng(${htIdPrice.latitude}, ${htIdPrice.longitude}),
-	        document.getElementById("hotel${htIdPrice.id}")
-	    );
-		popup${htIdPrice.id}.setMap(map);
+    	<c:if test="${htIdPrice.latitude != null}">
+			popup${htIdPrice.id} = new Popup(
+		        new google.maps.LatLng(${htIdPrice.latitude}, ${htIdPrice.longitude}),
+		        document.getElementById("hotel${htIdPrice.id}")
+		    );
+			popup${htIdPrice.id}.setMap(map);
+		</c:if>
 	</c:forEach>
 	
     //Cần tạo mới đối tượng infoWindow, quên mẹ mất để làm gì :'(, chắc là để ko bị lỗi undefined
@@ -138,34 +109,36 @@ function clickToPopup(htId) {
 			showInfoWindow(this);
 		}
 	};
-    xhttp.open("GET", "/rest/hotel/" + htId, true);
+    //xhttp.open("GET", "/rest/hotel/" + htId, true);
+    xhttp.open("GET", "/graphql?query=%0Aquery%20%7B%0A%20%20hotel(id%3A" + htId + ")%20%7B%0A%20%20%20%20id%0A%20%20%20%20name%0A%20%20%20%20star%0A%20%20%20%20avatar%0A%20%20%20%20street%0A%20%20%20%20district%0A%20%20%20%20city%0A%20%20%20%20latitude%0A%20%20%20%20longitude%0A%20%20%20%20hotel_url%0A%20%20%20%20review_point%0A%20%20%20%20num_reviews%0A%20%20%20%20price%0A%20%20%7D%0A%7D%0A", true);
     xhttp.send();
 }
 
 function showInfoWindow(xhttp) {
 	var responseString = xhttp.responseText;
 	var responseJSON = JSON.parse(responseString);
+	var hotel = responseJSON.data.hotel;
 	
 	//console.log(responseJSON);
 	
-	var lat = responseJSON.latitude;
-	var lng = responseJSON.longitude;
-	var street = responseJSON.street;
-	var district = responseJSON.district;
-	var city = responseJSON.city;
-	var imageUrl = responseJSON.imageUrl;
-	var hotelUrl = responseJSON.hotelUrl;
-	var reviewPoint = responseJSON.reviewPoint;
-	var numReviews = responseJSON.numReviews;
-	var star = responseJSON.star;
-	var name = responseJSON.name;
-	var price = responseJSON.priceString + "đ";
+	var lat = hotel.latitude;
+	var lng = hotel.longitude;
+	var street = hotel.street;
+	var district = hotel.district;
+	var city = hotel.city;
+	var avatar = hotel.avatar;
+	var hotelUrl = hotel.hotel_url;
+	var reviewPoint = hotel.review_point;
+	var numReviews = hotel.num_reviews;
+	var star = hotel.star;
+	var name = hotel.name;
+	var price = addDotsToNumber(hotel.price) + "đ";
 	
-	lat = Number(lat) - 0.007;
-    lng = Number(lng) + 0.07;
+	lat = Number(lat);// - 0.0016;
+    lng = Number(lng);// + 0.0142;
     //console.log("lat = " + lat, "lng = " + lng);
 
-    setInfoWindowContent(name, star, price, reviewPoint, numReviews);
+    setInfoWindowContent(name, star, price, reviewPoint, numReviews, avatar, street + ", " + district + ", " + city);
     
     if (infoWindow != null) infoWindow.close();
     infoWindow = new google.maps.InfoWindow({ content: infoWindowContent });
@@ -175,95 +148,32 @@ function showInfoWindow(xhttp) {
     customizeInfoWindow();
 }
 
-/** Defines the Popup class. */
-function definePopupClass() {
-    /**
-     * A customized popup on the map.
-     * @param {!google.maps.LatLng} position
-     * @param {!Element} content
-     * @constructor
-     * @extends {google.maps.OverlayView}
-     */
-    Popup = function (position, content) {
-        this.position = position;
-
-        content.classList.add('popup-bubble-content');
-
-        var pixelOffset = document.createElement('div');
-        pixelOffset.classList.add('popup-bubble-anchor');
-        pixelOffset.appendChild(content);
-
-        this.anchor = document.createElement('div');
-        this.anchor.classList.add('popup-tip-anchor');
-        this.anchor.appendChild(pixelOffset);
-
-        // Optionally stop clicks, etc., from bubbling up to the map.
-        this.stopEventPropagation();
-    };
-    // NOTE: google.maps.OverlayView is only defined once the Maps API has
-    // loaded. That is why Popup is defined inside initMap().
-    Popup.prototype = Object.create(google.maps.OverlayView.prototype);
-
-    /** Called when the popup is added to the map. */
-    Popup.prototype.onAdd = function () {
-        this.getPanes().floatPane.appendChild(this.anchor);
-    };
-
-    /** Called when the popup is removed from the map. */
-    Popup.prototype.onRemove = function () {
-        if (this.anchor.parentElement) {
-            this.anchor.parentElement.removeChild(this.anchor);
-        }
-    };
-
-    /** Called when the popup needs to draw itself. */
-    Popup.prototype.draw = function () {
-        var divPosition = this.getProjection().fromLatLngToDivPixel(this.position);
-        // Hide the popup when it is far out of view.
-        var display =
-            Math.abs(divPosition.x) < 4000 && Math.abs(divPosition.y) < 4000 ?
-                'block' :
-                'none';
-
-        if (display === 'block') {
-            this.anchor.style.left = divPosition.x + 'px';
-            this.anchor.style.top = divPosition.y + 'px';
-        }
-        if (this.anchor.style.display !== display) {
-            this.anchor.style.display = display;
-        }
-    };
-
-    /** Stops clicks/drags from bubbling up to the map. */
-    Popup.prototype.stopEventPropagation = function () {
-        var anchor = this.anchor;
-        anchor.style.cursor = 'auto';
-
-        ['click', 'dblclick', 'contextmenu', 'wheel', 'mousedown', 'touchstart',
-            'pointerdown']
-            .forEach(function (event) {
-                anchor.addEventListener(event, function (e) {
-                    e.stopPropagation();
-                });
-            });
-    };
-}
-
 function customizeInfoWindow() {
+	console.log("customizeInfoWindow()");
     
     // Reference to the DIV that wraps the bottom of infoWindow
     var iwOuter = $('.gm-style-iw');
-    //console.log(iwOuter);
-
+    
+    //Dịch chuyển info window sang bên phải cái hotel popup
+    iwOuter.attr('style', function (index, currentvalue) { return currentvalue + 'top: 34px !important; left: 165px !important;' });
+    
+    //cho thằng cha kích thước = 0, nếu ko nó sẽ đè lên các hotel popup khác
+    setTimeout(function() {
+    	//Nếu chạy lệnh này luôn thì ko đc, phải chờ 1 tý!
+    	iwOuter.parent().attr('style', function (index, currentvalue) { return currentvalue + 'width: 0 !important; heigh: 0 !important;' });
+    }, 100);
+    
     //CHÚ Ý: thằng ở trên và thằng dưới đây là KHÁC NHAU (1)
-    //var iwOuter2 = document.getElementsByClassName("gm-style-iw");
-    //console.log(iwOuter2[0]);
+    //var iwOuter2 = document.getElementsByClassName("gm-style-iw")[0];
+    //console.log(iwOuter2);
 
     /* Since this div is in a position prior to .gm-div style-iw.
      * We use jQuery and create a iwBackground variable,
      * and took advantage of the existing reference .gm-style-iw for the previous div with .prev().
     */
     var iwBackground = iwOuter.prev();
+    //console.log("prev:")
+    //console.log(iwBackground);
 
     // Removes background shadow DIV
     //iwBackground.children(':nth-child(2)').css({ 'display': 'none' });
@@ -285,9 +195,11 @@ function customizeInfoWindow() {
     //iwOuter.parent().parent().css({ left: '115px' });
 
     // Moves the shadow of the arrow 76px to the left margin.
+    // ko cần thiết vì nó bị display: none rồi (chắc vậy :v)
     iwBackground.children(':nth-child(1)').attr('style', function (i, s) { return s + 'left: 76px !important;' });
 
     // Moves the arrow 76px to the left margin.
+    // ko cần thiết vì nó bị display: none rồi (chắc vậy :v)
     iwBackground.children(':nth-child(3)').attr('style', function (i, s) { return s + 'left: 76px !important;' });
 
     // Changes the desired tail shadow color.
@@ -298,14 +210,15 @@ function customizeInfoWindow() {
 
     // Apply the desired effect to the close button
     //iwCloseBtn.css({ opacity: '1', right: '38px', top: '3px', border: '7px solid #09b511', 'border-radius': '13px', 'box-shadow': '0 0 5px #09b511' });
-    iwCloseBtn.css({width: '13px',
+    iwCloseBtn.css({
+    	display: 'none',
+    	width: '13px',
         height: '13px',
         overflow: 'hidden',
         position: 'absolute',
-        right: '47px',
-        top: '20px',
+        right: '-370px',
+        top: '38px',
         cursor: 'pointer',
-        border: '1px solid #Fff',
         opacity: '1'});
 
     // If the content of infoWindow not exceed the set maximum height, then the gradient is removed.
@@ -315,14 +228,17 @@ function customizeInfoWindow() {
 
     // The API automatically applies 0.7 opacity to the button after the mouseout event. This function reverses this event to the desired value.
     iwCloseBtn.mouseover(function () {
-        $(this).css({opacity: '1', border: '3px solid #Fff'});
+        $(this).css({opacity: '1', border: '2px solid #Fff'});
     });
     iwCloseBtn.mouseout(function () {
-        $(this).css({opacity: '1', border: '1px solid #Fff'});
+        $(this).css({opacity: '1', border: '0'});
     });
 }
 
 google.maps.event.addDomListener(window, 'load', initMap);
+/* setTimeout(function() {
+	initMap();
+}, 500); */
 	
 </script>
 </body>

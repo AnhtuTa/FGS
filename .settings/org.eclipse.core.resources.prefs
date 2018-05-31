@@ -1,6 +1,8 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/resources=UTF-8
+encoding//src/main/resources/i18n/demo.properties=UTF-8
 encoding//src/main/resources/i18n/messages_vi.properties=UTF-8
+encoding//src/main/webapp/images/ko\ th\u1EC3\ hi\u1EC3n\ th\u1ECB\ \u1EA3nh\ \u1EDF\ th\u01B0\ m\u1EE5c\ n\u00E0y\ \u0111\u01B0\u1EE3c.jsp=UTF-8
 encoding//src/test/java=UTF-8
 encoding/<project>=UTF-8

@@ -7,6 +7,7 @@
 <html>
 <head>
 	<title>Login</title>
+    <link rel='stylesheet' href="/css/style.css">
 	<style type="text/css">
 		.my_error {
 			color: red;

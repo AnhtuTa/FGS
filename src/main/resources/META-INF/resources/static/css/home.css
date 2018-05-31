@@ -1,0 +1,427 @@
+.error {
+	color: red;
+}
+
+h2 {
+	text-align: center;
+}
+
+.form_wrapper {
+	margin-bottom: 10px;
+	background: #fff;
+	padding: 10px;
+	/*box-shadow: -1px 1px 3px rgba(41,51,57,.25);*/
+	border-radius: 0 3px 3px 3px;
+}
+
+/*.form_search {*/
+	/*position: relative;*/
+	/*padding-right: 114px;*/
+/*}*/
+
+.form_search .form_hotel_name {
+	width: 100%;
+	padding: 7px 7px 7px 30px;
+	background: url(/img/search_20.png) no-repeat scroll 5px 4px;
+	border: 1px solid #b9b9b9;
+	border-radius: 4px;
+	font-weight: normal;
+}
+
+.form_search .btn_submit {
+	position: absolute;
+	padding: 7px;
+	top: 0;
+	right: 0;
+	width: 72px;
+	border-radius: 4px;
+	background: #2196F3;
+	border: 1px solid #2196F3;
+	color: #fff;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.form_search .btn_submit:hover {
+	background: #005acc;
+}
+
+.checked {
+	color: orange;
+}
+
+.hotel_wrapper {
+	border-radius: 3px;
+	font-family: Arial;
+	border: 1px solid #dbdbdb;
+	margin-bottom: 5px;
+	position: relative;
+	box-shadow: -1px 1px 3px rgba(41, 51, 57, .25);
+	background: #fff;
+}
+
+.hotel_photo {
+	text-align: center;
+	display: inline-block;
+	/*border: 2px solid red;*/
+	vertical-align: top;
+}
+
+.hotel_details {
+	width: 50%;
+	display: inline-block;
+	/*border: 2px solid blue;*/
+	padding: 7px;
+}
+
+.hotel_name {
+	font-size: 15px;
+	font-weight: bold;
+	margin-bottom: 2px;
+	cursor: pointer;
+	color: #2196F3;
+}
+
+.hotel_name:hover {
+	color: #50acf5;
+}
+
+.hotel_star {
+	font-size: 13px;
+	margin-bottom: 2px;
+}
+
+.hotel_address {
+	font-size: 13px;
+	margin-bottom: 2px;
+}
+
+.hotel_review {
+	
+}
+
+.hotel_price {
+	color: #ff0000;
+	font-weight: bold;
+	font-size: 18px;
+	display: inline-block;
+	/*border: 2px solid green;*/
+	vertical-align: top;
+	position: absolute;
+	top: 45px;
+	right: 10px;
+}
+
+.hotel_point {
+	background: #09b511;
+	color: #fff;
+	padding: 7px;
+	display: inline-block;
+	border-radius: 50%;
+	font-size: 13px;
+	font-weight: bold;
+	margin-top: 13px;
+}
+
+.total_rate {
+	display: inline-block;
+}
+
+.vl {
+	border-left: 1px solid #e3e3e3;
+	position: absolute;
+	left: 57%;
+	margin-left: -3px;
+	top: 10px;
+	bottom: 10px;
+}
+
+.btn_option {
+	background: #09b511;
+	color: #fff;
+	padding: 9px;
+	border-radius: 5px;
+	margin-top: 7px;
+	cursor: pointer;
+	width: 41%;
+	text-align: center;
+}
+
+.hotel_route {
+	float: left;
+}
+
+.hotel_reservation {
+	float: right;
+}
+
+::placeholder {
+	color: #c1c1c1;
+	opacity: 1;
+	/* Firefox */
+	font-weight: normal;
+}
+
+:-ms-input-placeholder {
+	/* Internet Explorer 10-11 */
+	color: #c1c1c1;
+	font-weight: normal;
+}
+
+::-ms-input-placeholder {
+	/* Microsoft Edge */
+	color: #c1c1c1;
+	font-weight: normal;
+}
+
+.hotel_slideout {
+	display: none;
+}
+/* Style the tab */
+.tab_wrapper {
+	
+}
+
+.tablink_wrapper {
+	overflow: hidden;
+	border-top: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+}
+/* Style the buttons that are used to open the tab content */
+.tablink_wrapper button {
+	background-color: inherit;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+}
+/* Change background color of buttons on hover */
+.tablink_wrapper button:hover {
+	background-color: #ddd;
+}
+/* Create an active/current tablink class */
+.tablink_wrapper button.active {
+	background-color: #ccc;
+}
+
+.btn_close_wrapper {
+	float: right;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.btn_close_wrapper:hover {
+	background-color: #ddd;
+}
+/* Style the tab content */
+.tabcontent {
+	display: none;
+	padding: 6px 12px;
+	border-top: none;
+}
+
+.no_border {
+	border: 0;
+}
+
+#tab_wrapper_hotel_nhatro {
+	margin-top: 13px;
+	box-shadow: -2px 2px 1px rgba(41, 51, 57, .25);
+}
+
+/*========= style for tab at the form search =======*/
+.tablink_wrapper2 {
+	overflow: hidden;
+	display: inline-block;
+	/*box-shadow: -1px -2px 1px rgba(41,51,57,.25);*/
+}
+/* Style the buttons that are used to open the tab content */
+.tablink_wrapper2 button {
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 7px 16px;
+	transition: 0.3s;
+	border-top: 1px solid #fff;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #fff;
+	background: transparent;
+	color: #9c9c9c;
+}
+/* Change background color of buttons on hover */
+.tablink_wrapper2 button:hover {
+	background-color: #ddd;
+}
+/* Create an active/current tablink class */
+.tablink_wrapper2 button.active {
+	background: #fff;
+	color: #2196F3;
+}
+/* Style the tab content */
+.tabcontent {
+	display: none;
+	padding: 6px 12px;
+	border-top: none;
+}
+
+td {
+	padding: 2px 0;
+}
+
+.slide_wrapper {
+	position: relative;
+	text-align: center;
+}
+
+.my_slides {
+	height: 390px;
+	max-width: 700px;
+}
+
+.btn-prev-next {
+	width: 42px;
+	height: 0px;
+	font-size: 30px;
+	background: #ffffff6e;
+	border: 0;
+	cursor: pointer;
+	transition: 0.5s;
+	padding-bottom: 42px;
+	top: 44%;
+}
+
+.btn-prev-next:hover {
+	color: #fff;
+	background: #494949;
+}
+
+.btn-previous {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+
+.btn-next {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.w3-animate-opacity {
+	animation: opac 0.3s
+}
+
+@keyframes opac {
+	from {opacity: 0.3}
+	to {opacity: 1}
+}
+
+.hotel-map {
+    height: 380px;
+}
+
+.map_wrapper {
+	height: 350px;
+    overflow: hidden;
+}
+.hotel-map {
+	height: 350px;	/*= độ cao của map_wrapper để ẩn đi nội dung ko cần thiết lúc bắt đầu load map */
+}
+.location_string {
+	font-weight: bold;
+    padding: 5px 0;
+}
+
+.form_search_label_section {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+.all_filters {
+	width: 30%;
+	display: inline-block;
+	/*border: 1px solid;*/
+}
+.filter_star {
+	position: relative;
+	top: -17px;
+}
+.input_btn_wrapper {
+	position: relative;
+	padding-right: 114px;
+}
+.label_price_range {
+
+}
+.input_price_range {
+	width: 100%;
+	right: 0;
+	text-align: left;
+	border: 0;
+}
+#slider-range {
+	margin-top: 10px;
+}
+
+.dropbtn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 16px;
+	font-size: 16px;
+	border: none;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f1f1f1;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+}
+
+.dropdown-content div {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content div:hover {background-color: #ddd}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .dropbtn {
+	background-color: #3e8e41;
+}
+.suggestion_places {
+	position: absolute;
+	z-index: 100;
+	background: #fff;
+	width: 100%;
+	border: 1px solid;
+	max-height: 200px;
+	overflow-y: scroll;
+}
+.suggestion_item {
+	cursor: pointer;
+	padding: 10px;
+}
+.suggestion_item:hover {
+	background: #ebeced;
+}
+.suggestion_item_span {
+	display: block;
+	font-size: 13px;
+	color: #3879d9;
+	font-style: italic;
+}
