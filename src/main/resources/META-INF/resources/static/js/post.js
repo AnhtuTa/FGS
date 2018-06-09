@@ -54,9 +54,13 @@ function fire_ajax_submit() {
             select_file_wrapper.innerHTML = data;
         },
         error: function (e) {
-
-            $("#result").text(e.responseText);
+            //$("#result").text(e.responseText);
             console.log("ERROR : ", e);
+            if(e.responseJSON.exception != null) {
+            	if(e.responseJSON.exception == "org.springframework.web.multipart.MultipartException" && e.responseJSON.message.includes("FileSizeLimitExceededException")) {
+                	alert(STR_ERR_FILE_SIZE_LIMIT);
+                }
+            }
             $("#btnSubmit").prop("disabled", false);
 
         }

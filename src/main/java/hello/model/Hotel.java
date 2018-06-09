@@ -22,6 +22,8 @@ public class Hotel extends House implements Serializable {
 	long hotelId;
 	int star;
 	String hotelUrl; // địa chỉ trang web
+	private String latitude; // vĩ độ
+	private String longitude; // kinh độ
 	float reviewPoint; // điểm đánh giá
 	int numReviews; // số lượng người đã đánh giá
 	String rawAddress;	//address lấy từ trivago, nếu hotel này chưa có trong database thì dùng google API chuyển address này sang lat, lng, street, district, city.
@@ -50,6 +52,22 @@ public class Hotel extends House implements Serializable {
 		this.hotelId = hotelId;
 	}
 
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+	
 	public float getReviewPoint() {
 		return reviewPoint;
 	}

@@ -71,36 +71,63 @@ public class HotelDAO extends JdbcDaoSupport {
 	 * @param stars mảng 5 phần tử, tương ứng với số sao của khách sạn. VD: stars[] = {false, true, true, false, true} nghĩa là chọn hotel có (star = 2 or star = 3 or star = 5) 
 	 * @param start
 	 * @param nums
-	 * @return
+	 * @return Danh sách hotel mà người dùng muốn tìm
 	 */
-    public List<Hotel> getHotelsByFieldAtHomePage(String fieldName, String fieldValue, int lowPrice, int highPrice, boolean []stars, int start, int nums) {
+    public List<Hotel> getHotelsByFieldAtHomePage(String fieldName, String fieldValue, int lowPrice, int highPrice, boolean []stars, int start, int nums, String orderBy) {
         String sql = "SELECT id, name, avatar, street, district, city, star, review_point, num_reviews, price " +
                 "FROM hotel WHERE " + fieldName + " LIKE '%" + fieldValue + "%'";
-        if(lowPrice != 0 || highPrice != 30000000) {
-            sql = sql + " AND price >= " + lowPrice + " AND price <= " + highPrice;
-        }
-        
-        for(int i = 0; i < 5; i++) {
-        	if(stars[i]) {
-        		sql = sql + " AND (star = " + (i+1);
-        		for(int j = i+1; j < 5; j++) {
-        			if(stars[j]) sql = sql + " OR star = " + (j+1);
-        		}
-        		sql += ")";
-        		break;
-        	}
-        }
+
+        sql = addPriceAndStarForSql(sql, lowPrice, highPrice, stars);
+
+        if(orderBy != null) sql = sql + " ORDER BY " + orderBy;
         
         sql = sql + " LIMIT " + start + ", " + nums;
         System.out.println("[HotelDAO][getHotelsByFieldAtHomePage] sql = " + sql);
         return this.getJdbcTemplate().query(sql, new HotelDAO.HotelHomePageMapper());
     }
+
+	public List<Hotel> getHotelsByLocationAtHomePage(String cityFound, int lowPrice, int highPrice, boolean[] stars, int start, int nums, String orderByString) {
+		return getHotelsByFieldAtHomePage("city", cityFound, lowPrice, highPrice, stars, start, nums, orderByString);
+	}
+
+	public int countHotelsByFieldAtHomePage(String fieldName, String fieldValue, int lowPrice, int highPrice, boolean []stars) {
+		String sql = "SELECT count(*) " +
+				"FROM hotel WHERE " + fieldName + " LIKE '%" + fieldValue + "%'";
+
+		sql = addPriceAndStarForSql(sql, lowPrice, highPrice, stars);
+
+		return this.getJdbcTemplate().queryForObject(sql, Integer.class);
+	}
+
+	public int countHotelsByLocationAtHomePage(String cityFound, int lowPrice, int highPrice, boolean[] stars) {
+		return countHotelsByFieldAtHomePage("city", cityFound, lowPrice, highPrice, stars);
+	}
+
+    private String addPriceAndStarForSql(String sql, int lowPrice, int highPrice, boolean []stars) {
+		if(lowPrice != 0 || highPrice != 30000000) {
+			sql = sql + " AND price >= " + lowPrice + " AND price <= " + highPrice;
+		}
+
+		for(int i = 0; i < 5; i++) {
+			if(stars[i]) {
+				sql = sql + " AND (star = " + (i+1);
+				for(int j = i+1; j < 5; j++) {
+					if(stars[j]) sql = sql + " OR star = " + (j+1);
+				}
+				sql += ")";
+				break;
+			}
+		}
+
+		return sql;
+	}
 	
 	/*
 	 * Lấy các field: id, price, tọa độ của các khác sạn
 	 */
-	public List<Hotel> getHotelIdPricesGeo() {
-		String sql = "SELECT id, price, latitude, longitude FROM hotel";
+	public List<Hotel> getHotelIdPricesGeo(String fieldName, String fieldValue) {
+		String sql = "SELECT id, price, latitude, longitude FROM hotel" +
+				" WHERE " + fieldName + " LIKE '%" + fieldValue + "%'";
 		return this.getJdbcTemplate().query(sql, new HotelDAO.HotelIdPriceGeoMapper());
 	}
 	
@@ -241,7 +268,7 @@ public class HotelDAO extends JdbcDaoSupport {
 		String sql = "SELECT EXISTS (SELECT 1 FROM hotel WHERE hotel_id = ?)";
 		return getJdbcTemplate().queryForObject(sql, new Object[] { hotelId }, Integer.class);
 	}
-	
+
 	/**
 	 * hotel mapper
 	 * @author AnhTu

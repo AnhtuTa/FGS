@@ -1,0 +1,42 @@
+.h1_register {
+    text-align: center;
+    color: #09b511;
+    margin-bottom: 15px;
+}
+.form_error {
+    color: red;
+}
+.my_error {
+    color: red;
+    text-align: center;
+    font-size: 20px;
+}
+.table_register {
+    margin: 10px auto;
+    width: 80%;
+}
+.table_register td {
+    padding-top: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+}
+.table_register input[type="text"], .table_register input[type="password"] {
+    padding: 5px;
+    width: 100%;
+}
+.form_register {
+    text-align: center;
+}
+.table_register span {
+    display: block;
+}
+.td_label {
+    width: 25%;
+    text-align: right;
+}
+.td_input {
+    width: 75%;
+}
+.td_error {
+    padding-bottom: 10px;
+}

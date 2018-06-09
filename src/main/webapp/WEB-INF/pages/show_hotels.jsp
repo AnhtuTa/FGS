@@ -11,10 +11,10 @@
             <div class="hotel_photo">
                 <c:choose>
                     <c:when test='${hotel.avatar != null && hotel.avatar != ""}'>
-                        <img style="max-height: 130px;width: 130px;" src="${hotel.avatar}"/>
+                        <img style="height: 130px;width: 130px;" src="${hotel.avatar}"/>
                     </c:when>
                     <c:otherwise>
-                        <img style="max-height: 130px;width: 130px;" src="/img/no_image.jpg"/>
+                        <img style="height: 130px;width: 130px;" src="/img/no_image.jpg"/>
                     </c:otherwise>
                 </c:choose>
 
@@ -43,7 +43,7 @@
                         <button class="tablink active"><spring:message code="label.hotel.photo" /></button>
                         <button class="tablink"><spring:message code="label.hotel.info" /></button>
                         <button class="tablink"><spring:message code="label.hotel.review" /></button>
-                        <button class="tablink"><spring:message code="label.hotel.price" /></button>
+                        <%--<button class="tablink"><spring:message code="label.hotel.price" /></button>--%>
 
                         <div class="btn_close_wrapper" title="<spring:message code="label.title.close" />">
                             <img style="width: 25px;" src="/img/icon_close.png" />
@@ -54,10 +54,10 @@
                     <div class="tabcontent tab-photo" style="display: block;"></div>
                     <div class="tabcontent tab-info"></div>
                     <div class="tabcontent tab-review"></div>
-                    <div class="tabcontent tab-price">
-                        <h3>Hanoi</h3>
-                        <p>Hanoi is the capital of Vietnam.</p>
-                    </div>
+                    <%--<div class="tabcontent tab-price">--%>
+                        <%--<h3>Hanoi</h3>--%>
+                        <%--<p>Hanoi is the capital of Vietnam.</p>--%>
+                    <%--</div>--%>
                 </div>
             </div>
         </div>

@@ -12,19 +12,19 @@ import org.json.JSONObject;
 import hello.model.MyAddress;
 
 public class AddressToLatlng {
-	
+
 	public static MyAddress address2coordinate(String address) {
 		if(address.equals("") || address == null) return null;
 		MyAddress myAddress = null;
 		String street = null, district = null, city = null;
 		String lat, lng;
-		
+
 		address = address.replaceAll(" ", "%20");
 		String link = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyBtvz3YOKjqxV3bolU5uY0UDruVfFNguS8";
 		//System.out.println(link);
 		String data = "";
 		URL url;
-		
+
 		try {
 			url = new URL(link);
 			InputStream inputStream = url.openConnection().getInputStream();
@@ -47,7 +47,7 @@ public class AddressToLatlng {
 			//Tạm thời chỉ lấy kq đầu tiên
 			//System.out.println("length = " + results.length());
 			JSONObject firstResult = results.getJSONObject(0);
-			
+
 			JSONArray address_components = firstResult.getJSONArray("address_components");
 			JSONArray types;
 			for(int i=0; i<address_components.length(); i++) {
@@ -64,7 +64,7 @@ public class AddressToLatlng {
 					city = address_components.getJSONObject(i).getString("long_name");
 				}
 			}
-			
+
 			JSONObject location = firstResult.getJSONObject("geometry").getJSONObject("location");
 			lat = location.getDouble("lat") + "";
 			lng = location.getDouble("lng") + "";

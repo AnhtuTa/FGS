@@ -12,15 +12,33 @@
 	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 	<meta charset="utf-8">
 	<title>map</title>
+	<link rel="shortcut icon" href="/img/favicon.png">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel='stylesheet' href="/css/style.css">
 	<link rel="stylesheet" href="/css/info_window.css" />
 	<link rel="stylesheet" href="/css/popup.css" />
+	<style type="text/css">
+		.div_warning {
+			color: #03A9F4;
+			font-weight: bold;
+			margin: 10px 0;
+		}
+		.popup-your-location {
+			background: #bb1dff;
+		}
+		.after-purple:after {
+			border-top: 8px solid #bb1dff;
+		}
+	</style>
 </head>
 
 <body>
     <jsp:include page="_menu.jsp" />
-	<div class="map_wrapper">	<!-- Chú ý: thằng này overflow: hidden -->
+	<c:if test="${no_hotel != null}">
+		<div class="div_warning"><spring:message code="label.map.no_hotel_to_show" /></div>
+	</c:if>
+	<div class="div_warning" style="display: none" id="cannot_get_your_location"></div>
+	<div class="map_wrapper">	<!-- Chú ý: thằng này overflow: hidden để ko hiển thị các thẻ div dưới đây khi mới load trang -->
 		<div id="map"></div>
 		<jsp:useBean id="fp" class="hello.util.FormatPrice"/>  
 		<c:forEach items="${hotelIdPriceList}" var="htIdPrice">
@@ -30,6 +48,7 @@
 				</div>
 			</c:if>
 		</c:forEach>
+		<div class="hotel-popup popup-your-location" id="popup-your-location"></div>
 	</div>
 	
 <script type="text/javascript" src="/js/jquery.js"></script>
@@ -37,6 +56,7 @@
 <script type="text/javascript" src="/js/map.js"></script>
 <script type="text/javascript" src="/js/fgs.js"></script>
 <script type="text/javascript">
+var STR_YOUR_LOCATION = 'Your location';
 var map;<c:forEach items="${hotelIdPriceList}" var="htIdPrice"><c:if test="${htIdPrice.latitude != null}">
 var popup${htIdPrice.id};</c:if></c:forEach>
 
@@ -45,8 +65,8 @@ var infoWindowContent;
 var infoWindow;
 
 function setInfoWindowContent(hotelName, hotelStar, hotelPrice, reviewPoint, numReviews, avatar, hotelAddress) {
-    if(avatar == null) avatar = "https://thedaoofdragonball.com/wp-content/uploads/2012/01/gokuism_church_of_goku.jpg";
-    if(hotelAddress == null) hotelAddress = "Địa chỉ đang bị rỗng!"
+    if(avatar == null) avatar = "/img/no_image.jpg";
+    if(hotelAddress == null) hotelAddress = ""
 	infoWindowContent =
         '<div class="hotel_wrapper">' +
         '<div class="hotel_name">' + hotelName + '</div>' +
@@ -77,8 +97,11 @@ function initMap() {
     definePopupClass();
 
     map = new google.maps.Map(document.getElementById('map'), {
-        center: { lat: 21.035419, lng: 105.844087 },
-        zoom: 14,
+        center: {
+            lat: <c:if test="${center_lat != null}">${center_lat}</c:if><c:if test="${center_lat == null}">21.035419</c:if>,
+			lng: <c:if test="${center_lng != null}">${center_lng}</c:if><c:if test="${center_lng == null}">105.844087</c:if>
+		},
+        zoom: <c:if test="${zoom != null}">${zoom}</c:if><c:if test="${zoom == null}">14</c:if>,
     });
     map.addListener("click", function () {
         if (infoWindow != null) infoWindow.close();
@@ -87,7 +110,7 @@ function initMap() {
     //========= popup ============//
     <c:forEach items="${hotelIdPriceList}" var="htIdPrice">
     	<c:if test="${htIdPrice.latitude != null}">
-			popup${htIdPrice.id} = new Popup(
+			var popup${htIdPrice.id} = new Popup(
 		        new google.maps.LatLng(${htIdPrice.latitude}, ${htIdPrice.longitude}),
 		        document.getElementById("hotel${htIdPrice.id}")
 		    );
@@ -100,6 +123,20 @@ function initMap() {
     infoWindow = new google.maps.InfoWindow({ content: infoWindowContent });
     infoWindow.setPosition(new google.maps.LatLng(-33.9, 151.1));
 
+    <c:if test="${param.is_show_your_pos != null && param.is_show_your_pos == 'true'}">
+		var divYourPos = document.getElementById("popup-your-location");
+		var popup_your_location = new Popup(
+			new google.maps.LatLng(${center_lat}, ${center_lng}),
+			divYourPos,
+			"purple"
+		);
+		popup_your_location.setMap(map);
+
+		setTimeout(function() {
+			//Ko set timeout mà thực hiện luôn lệnh này sẽ lỗi, vì lúc này thẻ có id = popup-your-location đã bị google map API làm biến mất
+			divYourPos.innerHTML = STR_YOUR_LOCATION;
+		}, 200);
+	</c:if>
 }
 
 function clickToPopup(htId) {

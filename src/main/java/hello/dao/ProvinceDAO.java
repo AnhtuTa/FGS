@@ -23,6 +23,11 @@ public class ProvinceDAO extends JdbcDaoSupport {
         return getJdbcTemplate().query(sql, new ProvinceDAO.ProvinceMapper());
     }
 
+    public String getProvinceName(int id) {
+        String sql = "SELECT _name FROM province WHERE id = ?";
+        return getJdbcTemplate().queryForObject(sql, new Object[] {id}, String.class);
+    }
+
     private static class ProvinceMapper implements RowMapper<Province> {
         @Override
         public Province mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -33,16 +38,19 @@ public class ProvinceDAO extends JdbcDaoSupport {
         }
     }
 
-//    public static void main(String[] args) {
-//		org.springframework.jdbc.datasource.DriverManagerDataSource ds = new org.springframework.jdbc.datasource.DriverManagerDataSource();
-//		ds.setDriverClassName("com.mysql.jdbc.Driver");
-//	    ds.setUrl("jdbc:mysql://localhost:3306/guesthouse");
-//	    ds.setUsername("root");
-//	    ds.setPassword("5555");
-//
-//	    List<Province> provinceList = new ProvinceDAO(ds).getAllProvinces();
-//	    for (Province p : provinceList) {
-//            System.out.println(p);
-//        }
-//	}
+    public static void main(String[] args) {
+		org.springframework.jdbc.datasource.DriverManagerDataSource ds = new org.springframework.jdbc.datasource.DriverManagerDataSource();
+		ds.setDriverClassName("com.mysql.jdbc.Driver");
+	    ds.setUrl("jdbc:mysql://localhost:3306/guesthouse");
+	    ds.setUsername("root");
+	    ds.setPassword("5555");
+
+        ProvinceDAO pd = new ProvinceDAO(ds);
+	    List<Province> provinceList = pd.getAllProvinces();
+	    for (Province p : provinceList) {
+            System.out.println(p);
+        }
+
+        System.out.println(pd.getProvinceName(2));
+	}
 }

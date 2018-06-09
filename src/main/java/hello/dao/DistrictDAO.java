@@ -23,6 +23,11 @@ public class DistrictDAO extends JdbcDaoSupport {
         return getJdbcTemplate().query(sql, new Object[] { province_id }, new DistrictDAO.DistrictMapper());
     }
 
+    public String getDistrictName(int id) {
+        String sql = "SELECT _name FROM district WHERE id = ?";
+        return getJdbcTemplate().queryForObject(sql, new Object[] {id}, String.class);
+    }
+
     private static class DistrictMapper implements RowMapper<District> {
         @Override
         public District mapRow(ResultSet rs, int rowNum) throws SQLException {

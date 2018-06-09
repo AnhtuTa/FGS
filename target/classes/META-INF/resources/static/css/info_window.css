@@ -64,12 +64,15 @@ body {
 
 .hotel_point {
 	background: #09b511;
-	color: #fff;
-	padding: 7px;
-	display: inline-block;
-	border-radius: 50%;
-	font-size: 15px;
-	font-weight: bold;
+    color: #fff;
+    padding: 7px;
+    display: inline-block;
+    border-radius: 50%;
+    font-size: 15px;
+    font-weight: bold;
+    min-width: 19px;
+    height: 19px;
+    line-height: 19px;
 }
 
 .total_rate {

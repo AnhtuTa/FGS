@@ -17,19 +17,19 @@ import hello.model.Hotel;
 public class CrawlTrivago {
 	private List<Hotel> hotelList;
 	HotelDAO hotelDAO;
-	
+
 	public CrawlTrivago() {
 		hotelList = new ArrayList<Hotel>();
 		hotelDAO = new HotelDAO();
 	}
-	
+
 	public void crawl(String city) {
 		File file = new File(System.getProperty("user.dir") + "/chromedriver.exe");
 		System.out.println(System.getProperty("user.dir"));
 		System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://www.trivago.vn");
-		
+
 		WebElement element = driver.findElement(By.name("sQuery"));
 		element.sendKeys(city);
 		element.submit();
@@ -96,13 +96,12 @@ public class CrawlTrivago {
 //			//in kq crawl được vào file
 //			printOut(toJSON(hotelList));
 //		} catch (IOException e) {
-//			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		
+
 		//hoặc là lưu vào database
 		hotelDAO.upsertHotel(hotelList);
-		
+
 		driver.close();
 		driver.quit();
 	}
@@ -111,7 +110,7 @@ public class CrawlTrivago {
 	private String toJSON(List<Hotel> ls) {
 		return new Gson().toJson(ls);
 	}
-	
+
 	/*
 	 * element chính là thẻ li chứa nội dung của từng hotel tức là thẻ:
 	 * li[@class='hotel item-order__list-item js_co_item']

@@ -85,7 +85,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.passwordParameter("password")
 				// Cấu hình cho Logout Page.
 				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/logout_successful");
-
 	}
 
 	// Just for testing BCryptPasswordEncoder

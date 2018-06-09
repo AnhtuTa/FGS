@@ -18,7 +18,7 @@
 	margin: 5px 0;
 }
 
-.select_city, .select_district {
+.select_city, .select_district, .select_sort_by {
 	width: 100%;
 	padding: 7px;
 	border-radius: 4px;
@@ -35,7 +35,7 @@
 }
 
 .input_street, .input_price, .input_area, .input_post_title,
-	.input_writer_name, .contact_phone, .contact_email, .contact_address {
+	.input_writer_name, .contact_name, .contact_phone, .contact_email, .contact_address {
 	border: 1px solid #ababab;
 	box-sizing: border-box;
 	width: 100%;

@@ -37,6 +37,8 @@ public class MyUserDetailsService implements UserDetailsService {
 	private MyRoleDAO appRoleDAO;
 	
 	public static String userFullname;
+	public static long userId;
+	public static String userRole;
 
 	/*
 	 * Tham số truyền vào chỉ gồm có username của người dùng. Ta sẽ tìm kiếm trong
@@ -56,21 +58,22 @@ public class MyUserDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException("User " + userName + " was not found in the DB");
 		}
 
+		userRole = "user";
 		List<String> roles = appRoleDAO.getRoleNames(myUser.getId());
 		List<GrantedAuthority> grantList = new ArrayList<>();
 		if (roles != null && roles.size() != 0) {
 			for (String role : roles) {
 				grantList.add(new SimpleGrantedAuthority(role));
-				System.out.println("role = " + role);
+				if(role.equals("ROLE_ADMIN")) userRole = "admin";
 			}
 		}
 
 		//Ko thể get session ở đây, vì lỗi, ko fix được!
 		//HttpSession session = request.getSession(true);
 		//session.setAttribute("userFullName", myUser.getFullname());
+		userId = myUser.getId();
 		userFullname = myUser.getFullname();
 
-		System.out.println("[MyUserDetailsService] userFullname = " + userFullname);
 		return (UserDetails) new User(myUser.getUsername(), myUser.getPassword(), grantList);
 	}
 

@@ -51,10 +51,13 @@ public class RegisterController {
 		if(!myUser.getPassword().equals(myUser.getConfirmPassword())) {
 			request.setAttribute("PASSWORD_DOESNT_MATCH", 1);
 			return "register";
-		} else if (myUserDao.saveMyUser(myUser)) {
+		} else if ("OK".equals(myUserDao.saveMyUser(myUser))) {
 			return "registerSuccessful";
-		} else {
+		} else if ("duplicate_key".equals(myUserDao.saveMyUser(myUser))) {
 			request.setAttribute("DUPLICATE_USER_OR_EMAIL", 1);
+			return "register";
+		} else {
+			request.setAttribute("UNKNOWN_ERROR", 1);
 			return "register";
 		}
 	}

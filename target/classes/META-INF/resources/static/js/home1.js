@@ -1,10 +1,3 @@
-//map này key là hotelId, còn value là index của slide của hotel đó
-var slideIndexMap = new Map();
-
-//map này key là hotelId, còn value là mảng các hình ảnh của slide của hotel đó
-//chú ý: BỎ PHẦN TỬ CUỐI CÙNG CỦA MẢNG ĐÓ, vì nó = ""
-var imageArrayMap = new Map();
-
 /*========== switch tab content ==============*/
 var tablinks_hotel_nhatro = document.getElementById("tab_wrapper_hotel_nhatro").getElementsByClassName("tablink_wrapper2")[0].getElementsByClassName("tablink");
 var tabcontents_hotel_nhatro = document.getElementById("tab_wrapper_hotel_nhatro").getElementsByClassName("tabcontent");

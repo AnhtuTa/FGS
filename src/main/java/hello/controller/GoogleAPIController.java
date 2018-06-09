@@ -65,4 +65,9 @@ public class GoogleAPIController {
         }
         return "";
     }
+    
+    @RequestMapping(value = { "/current-location" }, method = RequestMethod.GET)
+    public String getCurrentLocation() {
+    	return "current_location";
+    }
 }

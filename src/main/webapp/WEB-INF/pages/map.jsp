@@ -17,6 +17,10 @@
 </head>
 
 <body>
+	<noscript>
+		<meta http-equiv="refresh" content="0; url=/noJS" />
+		<style type="text/css">div {display: none;}</style>
+	</noscript>
 	<div class="map_wrapper">	<!-- Chú ý: thằng này overflow: hidden -->
 		<div id="map"></div>
 		<%

@@ -1,20 +1,20 @@
 
 /**
  * hiển thị slide hình ảnh của khách sạn
- * @param jsonString: chứa url của các ảnh
+ * @param image_urls: chứa url của các ảnh, mỗi url phân cách nhau bởi dấu |
  * @param tabPhoto: thẻ cần hiển thị slide
  * @param hotelId: id của khách sạn cần hiển thị slide
  **/
-function showSlide(jsonString, tabPhoto, hotelId) {
+function showSlide(image_urls, tabPhoto, hotelId) {
 	//console.log("[showSlide] jsonString = " + jsonString);
-    var json = JSON.parse(jsonString);
-    if(json.data.hotel.image_urls == "") {
+    //var json = JSON.parse(jsonString);
+    if(image_urls == "" || image_urls == null) {
     	var data = '<div class="slide_wrapper" id="slide_wrapper' + hotelId + '">';
-	    data += '<img class="my_slides" src="/img/no_image.jpg">';
+	    data += '<img class="my_slides" style="height: 180px;" src="/img/no_image.jpg">';
 	    data += "</div>"
 	    tabPhoto.innerHTML = data;
     } else {
-	    var imageUrls = json.data.hotel.image_urls.split("|");
+	    var imageUrls = image_urls.split("|");
 	
 	    //console.log(imageUrls);
 	    var data = '<div class="slide_wrapper" id="slide_wrapper' + hotelId + '">';
@@ -38,12 +38,11 @@ function showImages(hotelId) {
     var i;
     var mySlides = document.getElementById("slide_wrapper" + hotelId).getElementsByClassName("my_slides")[0];
 
-    /*======= NHỚ BỎ PHẦN TỬ CUỐI CÙNG CỦA MẢNG imageArrayMap.get(hotelId) ===========*/
-    if (slideIndexMap.get(hotelId) > imageArrayMap.get(hotelId).length - 2) {
+    if (slideIndexMap.get(hotelId) > imageArrayMap.get(hotelId).length - 1) {
         slideIndexMap.set(hotelId, 0);
     }
     if (slideIndexMap.get(hotelId) < 0) {
-        slideIndexMap.set(hotelId, imageArrayMap.get(hotelId).length - 2);
+        slideIndexMap.set(hotelId, imageArrayMap.get(hotelId).length - 1);
     }
 
     mySlides.setAttribute("src", imageArrayMap.get(hotelId)[slideIndexMap.get(hotelId)]);
@@ -100,14 +99,14 @@ function showHotelMap(hotelId, tabInfo) {
     xhttp.open("GET", "/graphql?query=" + escape(query), true);
     xhttp.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhttp.send();
-
 }
 
-function filterStar(star) {
-    document.getElementById("star_rate").innerHTML = star;
-}
+//function filterStar(star) {
+//    document.getElementById("star_rate").innerHTML = star;
+//}
 
 function getSuggestion(element) {
+    document.getElementById("btn_submit_hotel").disabled = true;
     if(element.value == "") {
         document.getElementById("suggestion_places").style.display = 'none';
         return;
@@ -121,7 +120,7 @@ function getSuggestion(element) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
+            //console.log(this.responseText);
             var res = JSON.parse(this.responseText);
             var predictions = res.predictions;
 
@@ -159,4 +158,5 @@ function showSuggestion(string, searchBy) {
     document.getElementById("input_hotel_name").value = string;
     document.getElementById("suggestion_places").style.display = 'none';
     document.getElementById("search_hotel_by").value = searchBy;
+    document.getElementById("btn_submit_hotel").disabled = false;
 }

@@ -1,8 +1,20 @@
 * {
 	margin: 0;
 	padding: 0;
+    font-size: 15px;
 }
-
+h1 {
+    font-size: 30px;
+}
+h2 {
+    font-size: 25px;
+}
+h3 {
+    font-size: 20px;
+}
+h4 {
+    font-size: 17px;
+}
 .icon_language {
 	/* margin-bottom: 5px; */
 	
@@ -14,8 +26,10 @@ body {
 .body_wrapper {
     max-width: 800px;
     margin: auto;
+    min-width: 675px;
 }
-a, h1, h2, h3, div, span, button, p, option, select, input, textarea {
+a, h1, h2, h3, div, span, button, p, option,
+select, input, textarea, tr, td, th {
 	/* font-family: "Segoe UI","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",Arial,sans-serif; */
 	font-family: 'Muli', sans-serif;
 }
@@ -25,11 +39,6 @@ a {
 }
 a:hover {
 	text-decoration: underline;
-}
-
-h2 {
-	font-size: 30px;
-    font-weight: 500;
 }
 
 /*========== check box ==============*/
@@ -107,4 +116,28 @@ h2 {
     font-weight: bold;
     border-radius: 4px;
     font-size: 15px;
+}
+.info_success {
+    color: #09b511;
+}
+.btn_submit {
+    padding: 8px;
+    border-radius: 4px;
+    background: #2196F3;
+    border: 1px solid #2196F3;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+.btn_submit:hover {
+    background: #005acc;
+    border: 1px solid #005acc;
+}
+.btn_submit:disabled {
+    /*background: #c6c6c6;*/
+    /*border: 1px solid #c6c6c6;*/
+    opacity: 0.5;
+    cursor: not-allowed;
 }

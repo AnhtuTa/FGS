@@ -3,6 +3,7 @@ package hello.dao;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
@@ -40,7 +41,7 @@ public class MyUserDAO extends JdbcDaoSupport {
 		}
 	}
 	
-	public boolean saveMyUser(MyUser myUser) {
+	public String saveMyUser(MyUser myUser) {
 		try {
 			//reset counter trước:
 			String resetCounter = "ALTER TABLE user AUTO_INCREMENT = 1";
@@ -51,10 +52,13 @@ public class MyUserDAO extends JdbcDaoSupport {
 			String encrytedPassword = EncryptPassword.encriptPassword(myUser.getPassword());
 			int row = this.getJdbcTemplate().update(sql, myUser.getUsername(), myUser.getEmail(), 
 									myUser.getFullname(), encrytedPassword);
-			if(row > 0) return true;
-			else return false;
+			if(row > 0) return "OK";
+			else return "fail";
+		} catch (DuplicateKeyException e) {
+			return "duplicate_key";
 		} catch (Exception e) {
-			return false;
+			e.printStackTrace();
+			return e.getMessage();
 		}
 	}
 }

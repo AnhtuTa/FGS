@@ -5,16 +5,26 @@ function definePopupClass() {
      * A customized popup on the map.
      * @param {!google.maps.LatLng} position
      * @param {!Element} content
+     * @param {String} color_of_after màu của after của popup. Do popup được tạo ra sẽ có 1 hình tam giác để chỉ vào vị
+     * trí mà nó neo. Cái hình tam giác này được vẽ = popup-bubble-anchor::after.
+     * Do đó nếu muốn thay đổi màu cho hình tam giác này thì ta cần thêm 1 class nữa để thay đổi màu
+     * Nếu tham số này = null thì màu của hình tam giác đó sẽ được thiết lập trong file .css với class: popup-bubble-anchor::after
+     * Nhưng nếu ta thêm 1 class khác để chỉ rõ màu của nó, chẳng hạn tên là after-red, thì màu của hình tam giác này
+     * sẽ được thiết lập ở class after-red::after
      * @constructor
      * @extends {google.maps.OverlayView}
      */
-    Popup = function (position, content) {
+    Popup = function (position, content, color_of_after=null) {
         this.position = position;
 
         content.classList.add('popup-bubble-content');
 
         var pixelOffset = document.createElement('div');
         pixelOffset.classList.add('popup-bubble-anchor');
+        if(color_of_after != null) {
+            pixelOffset.classList.add('after-' + color_of_after);
+            console.log("add after-red");
+        }
         pixelOffset.appendChild(content);
 
         this.anchor = document.createElement('div');

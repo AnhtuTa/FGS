@@ -1,6 +1,9 @@
-
 var selectCity = document.getElementsByClassName("select_city")[0];
 var selectDistrict = document.getElementsByClassName("select_district")[0];
+//PHẢI ĐẢM BẢO CHỈ CÓ 1 THẰNG CÓ class LÀ select_city VÀ select_district
+// console.log("selectCity = ");
+// console.log(selectCity);
+
 selectCity.addEventListener("change", function() {
     console.log(selectCity.value);
     //clear data of district dropdown
@@ -12,7 +15,7 @@ selectCity.addEventListener("change", function() {
         if (this.readyState == 4 && this.status == 200) {
             var districts = JSON.parse(this.responseText).data.districts;   //districts là 1 mảng JSON
 
-            var data = "";
+            var data = '<option value="">' + STR_NONE + '</option>';
             for(var i = 0; i < districts.length; i++) {
                 data += '<option value="' + districts[i].id + '">' + districts[i].prefix + ' ' + districts[i].name + '</option>';
             }

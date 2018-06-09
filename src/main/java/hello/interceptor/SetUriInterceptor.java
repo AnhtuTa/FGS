@@ -26,19 +26,26 @@ public class SetUriInterceptor extends HandlerInterceptorAdapter {
 			throws Exception {
 		HttpSession session = request.getSession();
 		String currentURIAndQuery = request.getRequestURI();
-		if(request.getQueryString() != null) currentURIAndQuery = currentURIAndQuery + "?" + request.getQueryString();
+		if(request.getQueryString() != null) {
+			currentURIAndQuery = currentURIAndQuery + "?" + request.getQueryString();
+		}
 		session.setAttribute("currentURI", currentURIAndQuery);
-
-		// chú ý: dù người dùng login nhưng thuộc tính sau của session vẫn
-		// tồn tại, khi người dùng login lại bằng tài khoản đó hoặc bất kỳ tài khoản nào
-		// khác thì biến sau sẽ được update giá trị
-		session.setAttribute("userFullname", MyUserDetailsService.userFullname);
 
 		System.out.println("\n==================");
 		System.out.println("[SetUriInterceptor] currentURIAndQuery = " + currentURIAndQuery);
-		System.out.println("[SetUriInterceptor] userFullname = " + MyUserDetailsService.userFullname);
 
-		System.out.println("All of session attributes:");
+		// chú ý: dù người dùng logout nhưng thuộc tính sau của session vẫn
+		// tồn tại, khi người dùng login lại bằng tài khoản đó hoặc bất kỳ tài khoản nào
+		// khác thì biến sau sẽ được update giá trị
+		// System.out.println("[SetUriInterceptor] userId = " + MyUserDetailsService.userId);
+		// System.out.println("[SetUriInterceptor] userFullname = " + MyUserDetailsService.userFullname);
+		if(session.getAttribute("SPRING_SECURITY_CONTEXT") != null && session.getAttribute("userId") == null) {
+			session.setAttribute("userId", MyUserDetailsService.userId);
+			session.setAttribute("userFullname", MyUserDetailsService.userFullname);
+			session.setAttribute("userRole", MyUserDetailsService.userRole);
+		}
+
+		System.out.println("[SetUriInterceptor] All of session attributes:");
 		Enumeration<String> attEnum = session.getAttributeNames();
 		while (attEnum.hasMoreElements()) {
 			String attName = attEnum.nextElement();
