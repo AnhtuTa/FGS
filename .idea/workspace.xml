@@ -15,8 +15,8 @@
       <file leaf-file-name="MainController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hello/controller/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3498">
-              <caret line="187" column="75" lean-forward="true" selection-start-line="187" selection-start-column="75" selection-end-line="187" selection-end-column="75" />
+            <state relative-caret-position="3192">
+              <caret line="187" column="75" selection-start-line="187" selection-start-column="75" selection-end-line="187" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -24,7 +24,7 @@
       <file leaf-file-name="GraphqlController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hello/controller/GraphqlController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-625">
+            <state relative-caret-position="1615">
               <caret line="105" column="24" selection-start-line="105" selection-start-column="24" selection-end-line="105" selection-end-column="24" />
             </state>
           </provider>
@@ -33,26 +33,34 @@
       <file leaf-file-name="PostDAO.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hello/dao/PostDAO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="51" column="57" lean-forward="true" selection-start-line="51" selection-start-column="57" selection-end-line="51" selection-end-column="57" />
+            <state relative-caret-position="741">
+              <caret line="51" column="57" selection-start-line="51" selection-start-column="57" selection-end-line="51" selection-end-column="57" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="228">
               <caret line="806" selection-start-line="806" selection-end-line="806" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HotelDAO.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/hello/dao/HotelDAO.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1364">
+              <caret line="102" column="91" selection-start-line="102" selection-start-column="91" selection-end-line="102" selection-end-column="91" />
               <folding>
-                <element signature="n#style#0;n#h2#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#40169#42335#0#HTML" />
-                <element signature="e#42426#42693#0#HTML" />
-                <element signature="e#42699#43164#0#HTML" />
-                <element signature="e#45717#47956#0#HTML" />
-                <element signature="e#51533#52249#0#HTML" />
-                <element signature="e#52296#53355#0#HTML" />
-                <element signature="e#53413#53877#0#HTML" />
+                <element signature="method#addPriceAndStarForSql#0;class#HotelDAO#0" />
+                <element signature="method#getHotelIdPricesGeo#0;class#HotelDAO#0" />
+                <element signature="method#getAllHotelMap#0;class#HotelDAO#0" />
+                <element signature="method#insertHotel#0;class#HotelDAO#0" />
+                <element signature="method#updateHotel#0;class#HotelDAO#0" />
+                <element signature="method#insertHotelBatch#0;class#HotelDAO#0" />
+                <element signature="method#updateHotelBatch#0;class#HotelDAO#0" />
               </folding>
             </state>
           </provider>
@@ -61,7 +69,7 @@
       <file leaf-file-name="fgs.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/resources/static/js/fgs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
+            <state relative-caret-position="912">
               <caret line="48" column="42" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="42" />
             </state>
           </provider>
@@ -70,7 +78,7 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/resources/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
+            <state relative-caret-position="779">
               <caret line="41" column="1" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
             </state>
           </provider>
@@ -487,7 +495,6 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="12" weight="0.24251969" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
@@ -497,7 +504,7 @@
       <window_info anchor="bottom" id="Run" order="2" weight="0.22992127" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info id="Designer" order="4" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.238653" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.238653" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -510,6 +517,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.24251969" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -798,28 +806,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1311">
           <caret line="153" column="17" selection-start-line="153" selection-start-column="17" selection-end-line="153" selection-end-column="17" />
-          <folding>
-            <element signature="n#!!block;n#showSlide#0" />
-            <element signature="n#!!block;n#plusDivs#0" />
-            <element signature="n#!!block;n#showImages#0" />
-            <element signature="n#!!block;n#showHotelMap#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/hello/dao/HotelDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="102" column="91" selection-start-line="102" selection-start-column="91" selection-end-line="102" selection-end-column="91" />
-          <folding>
-            <element signature="method#addPriceAndStarForSql#0;class#HotelDAO#0" />
-            <element signature="method#getHotelIdPricesGeo#0;class#HotelDAO#0" />
-            <element signature="method#getAllHotelMap#0;class#HotelDAO#0" />
-            <element signature="method#insertHotel#0;class#HotelDAO#0" />
-            <element signature="method#updateHotel#0;class#HotelDAO#0" />
-            <element signature="method#insertHotelBatch#0;class#HotelDAO#0" />
-            <element signature="method#updateHotelBatch#0;class#HotelDAO#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -856,36 +842,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hello/controller/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3498">
-          <caret line="187" column="75" lean-forward="true" selection-start-line="187" selection-start-column="75" selection-end-line="187" selection-end-column="75" />
+        <state relative-caret-position="3192">
+          <caret line="187" column="75" selection-start-line="187" selection-start-column="75" selection-end-line="187" selection-end-column="75" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/resources/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
+        <state relative-caret-position="779">
           <caret line="41" column="1" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/META-INF/resources/static/js/fgs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
+        <state relative-caret-position="912">
           <caret line="48" column="42" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hello/controller/GraphqlController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-625">
+        <state relative-caret-position="1615">
           <caret line="105" column="24" selection-start-line="105" selection-start-column="24" selection-end-line="105" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hello/dao/PostDAO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="51" column="57" lean-forward="true" selection-start-line="51" selection-start-column="57" selection-end-line="51" selection-end-column="57" />
+        <state relative-caret-position="741">
+          <caret line="51" column="57" selection-start-line="51" selection-start-column="57" selection-end-line="51" selection-end-column="57" />
         </state>
       </provider>
     </entry>
@@ -893,15 +879,21 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="806" selection-start-line="806" selection-end-line="806" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hello/dao/HotelDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1364">
+          <caret line="102" column="91" selection-start-line="102" selection-start-column="91" selection-end-line="102" selection-end-column="91" />
           <folding>
-            <element signature="n#style#0;n#h2#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#40169#42335#0#HTML" />
-            <element signature="e#42426#42693#0#HTML" />
-            <element signature="e#42699#43164#0#HTML" />
-            <element signature="e#45717#47956#0#HTML" />
-            <element signature="e#51533#52249#0#HTML" />
-            <element signature="e#52296#53355#0#HTML" />
-            <element signature="e#53413#53877#0#HTML" />
+            <element signature="method#addPriceAndStarForSql#0;class#HotelDAO#0" />
+            <element signature="method#getHotelIdPricesGeo#0;class#HotelDAO#0" />
+            <element signature="method#getAllHotelMap#0;class#HotelDAO#0" />
+            <element signature="method#insertHotel#0;class#HotelDAO#0" />
+            <element signature="method#updateHotel#0;class#HotelDAO#0" />
+            <element signature="method#insertHotelBatch#0;class#HotelDAO#0" />
+            <element signature="method#updateHotelBatch#0;class#HotelDAO#0" />
           </folding>
         </state>
       </provider>
