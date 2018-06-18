@@ -195,9 +195,10 @@ public class HotelDAO extends JdbcDaoSupport {
 	
 	public boolean insertHotelBatch(List<Hotel> htList) {
 		String sql = "INSERT INTO hotel(hotel_id, name, star, avatar, hotel_url, image_urls, street, "
-				+ "district, city, latitude, longitude, review_point, num_reviews, price, type) "
-				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "district, city, latitude, longitude, review_point, num_reviews, price) "
+				+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		List<Object[]> paramList = new LinkedList<>();
+		Long htId;
 		MyAddress myAddress;
 		
 		for(Hotel h : htList) {
@@ -215,10 +216,13 @@ public class HotelDAO extends JdbcDaoSupport {
 				}
 			}
 			
-			paramList.add(new Object[] {h.getHotelId()+"", h.getName(), h.getStar()+"", h.getAvatar(),
+			htId = h.getHotelId();
+			if(htId == 0) htId = null;
+			
+			paramList.add(new Object[] {htId, h.getName(), h.getStar()+"", h.getAvatar(),
 					h.getHotelUrl(), h.getImageUrlsString(), h.getStreet(), h.getDistrict(),
 					h.getCity(), h.getLatitude(), h.getLongitude(), h.getReviewPoint()+"",
-					h.getNumReviews()+"", h.getPrice()+"", "hotel"});
+					h.getNumReviews()+"", h.getPrice()+""});
 		}
 		try {
 			getJdbcTemplate().batchUpdate(sql, paramList);

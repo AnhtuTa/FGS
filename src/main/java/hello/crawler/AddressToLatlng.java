@@ -14,7 +14,10 @@ import hello.model.MyAddress;
 public class AddressToLatlng {
 
 	public static MyAddress address2coordinate(String address) {
-		if(address.equals("") || address == null) return null;
+		// java.lang.NullPointerException:
+		// if(address.equals("") || address == null) return null;
+		if(address == null || "".equals(address)) return null;
+		
 		MyAddress myAddress = null;
 		String street = null, district = null, city = null;
 		String lat, lng;
@@ -43,10 +46,10 @@ public class AddressToLatlng {
 			//System.out.println(results);
 			//thường thì mỗi địa chỉ sẽ chỉ có 1 kq, nên
 			//jsonArray.length = 1. Nhưng cũng có trường hợp nhiều hơn 1,
-			//VD: address = số 1 Đại Cồ Việt (trả về 2 kq)
-			//Tạm thời chỉ lấy kq đầu tiên
+			//VD: address = so 1 Dai Co Viet (trả về 2 kq)
+			//Tạm thời chỉ lấy kq cuối cùng
 			//System.out.println("length = " + results.length());
-			JSONObject firstResult = results.getJSONObject(0);
+			JSONObject firstResult = results.getJSONObject(results.length() - 1);
 
 			JSONArray address_components = firstResult.getJSONArray("address_components");
 			JSONArray types;
@@ -57,7 +60,8 @@ public class AddressToLatlng {
 					//Nếu address = "số 1 Đại Cồ Việt" thì nó ra kq là premise
 					street = address_components.getJSONObject(i).getString("long_name");
 				} else if(types.get(0).toString().equals("route")) {
-					street += (" " + address_components.getJSONObject(i).getString("long_name"));
+					if(street == null) street = address_components.getJSONObject(i).getString("long_name");
+					else street += (" " + address_components.getJSONObject(i).getString("long_name"));
 				} else if(types.get(0).toString().equals("administrative_area_level_2")) {
 					district = address_components.getJSONObject(i).getString("long_name");
 				} else if(types.get(0).toString().equals("administrative_area_level_1")) {
@@ -92,5 +96,11 @@ public class AddressToLatlng {
 		//MyAddress myAddress = AddressToLatlng.address2coordinate("số 10 chùa bộc");
 		MyAddress myAddress = AddressToLatlng.address2coordinate("4 Tô Tịch, 100000, Hà Nội, Việt Nam");
 		System.out.println(myAddress);
+		
+		MyAddress myAddress2 = AddressToLatlng.address2coordinate(null);
+		System.out.println(myAddress2);
+
+		MyAddress myAddress3 = AddressToLatlng.address2coordinate("1/4 Street, 180000, Cát Bà, Việt Nam");
+		System.out.println(myAddress3);
 	}
 }

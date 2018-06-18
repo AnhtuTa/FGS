@@ -11,7 +11,6 @@ import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
 
 import hello.util.StringUtils;
-import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;

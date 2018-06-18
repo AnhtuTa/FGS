@@ -26,7 +26,11 @@
                     	<span class="fa fa-star checked"></span>
                 	</c:forEach>
                 </div>
-                <div class="hotel_address">${hotel.street}, ${hotel.district}, ${hotel.city}</div>
+                <div class="hotel_address">
+                	<c:if test="${hotel.street != null}">${hotel.street}, </c:if>
+                	<c:if test="${hotel.district != null}">${hotel.district}, </c:if>
+                	${hotel.city}
+                </div>
                 <div class="hotel_review">
                     <div class="hotel_point">${hotel.reviewPoint}</div>
                     <div class="total_rate">${hotel.numReviews} reviews</div>
