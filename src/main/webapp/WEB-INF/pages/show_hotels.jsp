@@ -20,7 +20,7 @@
 
             </div>
             <div class="hotel_details">
-                <div class="hotel_name">${hotel.name}</div>
+                <div class="hotel_name"><c:if test="${hotel.name == null || hotel.name == ''}">&#60;&#60;Unknown hotel name&#62;&#62;</c:if>${hotel.name}</div>
                 <div class="hotel_star">
                 	<c:forEach begin = "1" end = "${hotel.star}">
                     	<span class="fa fa-star checked"></span>

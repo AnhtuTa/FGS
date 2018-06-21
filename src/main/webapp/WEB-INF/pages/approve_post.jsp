@@ -151,6 +151,7 @@
     <div class="body_wrapper">
         <jsp:include page="_menu.jsp" />
         <h3><spring:message code="label.here_are_posts_pending_approval" /> <span id="span_total_post"></span></h3>
+        <h4 id="notify_approve_all_first"></h4>
 
         <div class="approve_post_wrapper" id="approve_post_wrapper"></div>
 
@@ -160,6 +161,7 @@
             <img class="modal-content" style="min-height: 400px;" id="img01">
             <div id="caption"></div>
         </div>
+        
     </div>
 </body>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -167,6 +169,7 @@
 <script>
     var LOCALE_STRING = '${sessionScope.localeString}';
     var approve_post_wrapper = document.getElementById("approve_post_wrapper");
+    var notify_approve_all_first = document.getElementById("notify_approve_all_first");
 
     var STR_UNKNOWN = '<spring:message code="label.unknown" />';
     var STR_POSTER = '<spring:message code="label.poster" />';
@@ -227,6 +230,7 @@
                     approve_post_wrapper.innerHTML = STR_NO_POST_TO_APPROVE;
                 } else {
                     approve_post_wrapper.innerHTML = "";
+                    notify_approve_all_first.innerHTML = "<div>Chú ý:</div>- Mỗi lần hệ thống sẽ tải 5 bài đăng cũ nhất đang chờ được phê duyệt<br>- Bạn phải phê duyệt tất cả 5 bài đăng này trước thì mới được phê duyệt các bài đăng mới hơn (hệ thống tự động tải thêm sau khi bạn phê duyệt xong)";
 
                     for(var i=0; i<postsToApprove.length; i++) {
                         var divNode = document.createElement("div");

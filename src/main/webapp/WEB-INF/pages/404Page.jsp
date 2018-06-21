@@ -29,6 +29,6 @@
 	<div class="div_return_home">
 		<spring:message code="label.click" /> <a href="/home"><spring:message code="label.here" /></a> <spring:message code="label.to_return_home" />
 	</div>
-	<h3 style="text-align: center;">Nếu mày đang gặp bug thì nên comment cái custom error page này lại, có khi lại thấy bug :v</h3>
+	<!-- <h3 style="text-align: center;">Nếu mày đang gặp bug thì nên comment cái custom error page này lại, có khi lại thấy bug :v</h3> -->
 </body>
 </html>
